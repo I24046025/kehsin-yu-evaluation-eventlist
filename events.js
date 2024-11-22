@@ -28,12 +28,11 @@ function createEventElem(event) {
     // Edit button
     const editButton = document.createElement("button");
     editButton.textContent = "Edit";
-
     const saveButton = document.createElement("button");
     saveButton.textContent = "Save";
     const cancelButton = document.createElement("button");
     cancelButton.textContent = "Cancel";
-    
+
     editButton.addEventListener("click", () => {
       // Save the original values
       const originalEventName = event.eventName;
@@ -74,6 +73,10 @@ function createEventElem(event) {
             startDate: updatedStartDate,
             endDate: updatedEndDate,
         });
+        // ** Update the `event` object with the new values **
+        event.eventName = updatedEvent.eventName;
+        event.startDate = updatedEvent.startDate;
+        event.endDate = updatedEvent.endDate;
         // Update the DOM with new values
         eventNameElem.textContent = updatedEvent.eventName;
         eventStartElem.textContent = updatedEvent.startDate;
