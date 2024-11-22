@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e6e2d3; /* Tan */
+      color: #333;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .add-event-btn {
+      background-color: #008cba; /* Blue */
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .add-event-btn:hover {
+      background-color: #005f7f;
+    }
+
+    .event-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #f0f0f0; /* Traffic white */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .event-table th, .event-table td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .event-table th {
+      background-color: #008cba; /* Blue */
+      color: #fff;
+      text-align: center;
+    }
+
+    .event-table tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .actions button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .actions .edit-btn svg {
+      fill: #4caf50; /* Yellow green */
+    }
+
+    .actions .delete-btn svg {
+      fill: #c94c4c; /* Vermillion red */
+
+    }
+
+    .actions .edit-btn:hover svg,
+    .actions .delete-btn:hover svg {
+      opacity: 0.8;
+    }
+
+
+    /* Form Styles */
+    #add-event-form {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    #add-event-form input {
+      margin: 5px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #add-event-form button {
+      background-color: #008cba;
+      color: #fff;
+      padding: 8px 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+
+    #add-event-form button:hover {
+      background-color: #005f7f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Add Event Form -->
+    <form id="add-event-form" style="display: none;">
+      <input type="text" id="event-name" placeholder="Event Name" required />
+      <input type="date" id="event-start" required />
+      <input type="date" id="event-end" required />
+      <button type="submit">Add Event</button>
+    </form>
+
+    <!-- Add New Event Button -->
+    <button class="add-event-btn" id="toggle-form-btn">
+      <svg focusable viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12 6V18M18 12H6" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Add New Event
+    </button>
+
+    <!-- Event Table -->
+    <table class="event-table">
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="event-list"></tbody>
+    </table>
+  </div>
+
+  <!-- Event Manager Script -->
+  <script src="./eventsAPI.js"></script>
+  <script src="./events.js"></script>
+  <script>
+    // JavaScript to toggle form visibility
+    const toggleFormButton = document.getElementById('toggle-form-btn');
+    const addEventForm = document.getElementById('add-event-form');
+
+    toggleFormButton.addEventListener('click', () => {
+      if (addEventForm.style.display === 'none') {
+        addEventForm.style.display = 'block';
+      } else {
+        addEventForm.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
